@@ -1,7 +1,6 @@
 package br.com.alura.loja.dao;
 
 
-import java.util.List;
 
 import javax.persistence.EntityManager;
 

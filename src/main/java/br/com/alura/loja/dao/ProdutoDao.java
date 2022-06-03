@@ -8,6 +8,7 @@ import br.com.alura.loja.modelo.Produto;
 
 public class ProdutoDao {
 	
+
 	private EntityManager em;
 
 	public ProdutoDao(EntityManager em) {
@@ -27,6 +28,23 @@ public class ProdutoDao {
 		String jpql = "SELECT p FROM Produto p ";
 		return em.createQuery(jpql, Produto.class).getResultList();
 	}
+	
+	public List<Produto> buscarPorNome(String nome) {
+		//String jpql = "SELECT p FROM Produto p WHERE p.nome = ?1";
+		String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome";
+		return em.createQuery(jpql, Produto.class)
+				//.setParameter(1, nome)
+				.setParameter("nome", nome)
+				.getResultList();
+	}
+
+	public List<Produto> buscarPorDaCategoria(String nome) {
+		String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
+		return em.createQuery(jpql, Produto.class)
+					.setParameter("nome", nome)
+					.getResultList();
+		}
+
 	
 
 }
